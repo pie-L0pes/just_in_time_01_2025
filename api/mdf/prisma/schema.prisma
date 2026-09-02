@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+enum TipoMovimentacao {
+  ENTRADA
+  SAIDA
+}
+
+model usuario {
+  id            Int            @id @default(autoincrement())
+  nome          String
+  email         String         @unique
+  senha         String
+
+  producoes     producao[]
+  movimentacoes movimentacao[]
+}
+
+model produto {
+  id            Int            @id @default(autoincrement())
+  nome          String
+  descricao     String
+  custo         Float
+  estoque       Int            @default(0)
+  estoqueMinimo Int            @default(0)
+
+  itens         item[]
+  producoes     producao[]
+  movimentacoes movimentacao[]
+}
+
+model pedido {
+  id          Int      @id @default(autoincrement())
+  cliente     String
+  data        DateTime @default(now())
+
+  itens       item[]
+}
+
+model item {
+  id         Int      @id @default(autoincrement())
+  pedidoId   Int
+  produtoId  Int
+  quantidade Int
+
+  pedido     pedido   @relation(fields: [pedidoId], references: [id])
+  produto    produto  @relation(fields: [produtoId], references: [id])
+}
+
+model producao {
+  id         Int      @id @default(autoincrement())
+  produtoId  Int
+  usuarioId  Int
+  quantidade Int
+  data       DateTime @default(now())
+
+  produto    produto  @relation(fields: [produtoId], references: [id])
+  usuario    usuario  @relation(fields: [usuarioId], references: [id])
+}
+
+model movimentacao {
+  id         Int               @id @default(autoincrement())
+  produtoId  Int
+  usuarioId  Int
+  tipo       TipoMovimentacao
+  quantidade Int
+  data       DateTime          @default(now())
+
+  produto    produto           @relation(fields: [produtoId], references: [id])
+  usuario    usuario           @relation(fields: [usuarioId], references: [id])
+}
