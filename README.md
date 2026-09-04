@@ -72,13 +72,25 @@ Banco utilizado:
 
 **mydbpreparacao_db**
 
-Principais tabelas:
+O banco de dados é composto pelas seguintes tabelas:
 
 - Usuario
 - Produto
+- Pedido
+- Item
+- Producao
 - Movimentacao
 
-O arquivo `script_banco.sql` contém a criação e população inicial do banco.
+### Descrição das tabelas
+
+- **Usuario:** armazena os usuários que acessam o sistema.
+- **Produto:** armazena os produtos, seus custos e informações de estoque.
+- **Pedido:** registra os pedidos realizados.
+- **Item:** relaciona os produtos aos pedidos e armazena suas quantidades.
+- **Producao:** registra os produtos fabricados, suas quantidades, datas e usuários responsáveis.
+- **Movimentacao:** registra as entradas e saídas de estoque, identificando o produto, quantidade, tipo, data e usuário responsável.
+
+O arquivo `script_banco.sql` contém a criação e a população inicial das tabelas do banco de dados.
 
 ## Como executar
 
