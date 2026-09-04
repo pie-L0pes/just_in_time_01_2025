@@ -132,7 +132,7 @@ O projeto possui os seguintes documentos:
 
 - Lista de requisitos funcionais
 - DER
-- Script de criação e população do banco
+- Script de criação e população do banco(dentro da pasta api)
 - Interfaces do sistema
 - Descritivo de casos de teste
 - Lista de requisitos de infraestrutura
