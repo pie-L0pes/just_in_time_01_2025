@@ -9,7 +9,7 @@ document.getElementById('nomeUsuario').textContent = usuario.nome;
 const produtoSelect = document.getElementById('produto');
 const tipoSelect = document.getElementById('tipo');
 const quantidadeInput = document.getElementById('quantidade');
-const dataInput = document.get ElementById('data');
+const dataInput = document.getElementById('data');
 const mensagem = document.getElementById('mensagem');
 
 const API_PRODUTO = 'http://localhost:3000/produto';
@@ -109,7 +109,7 @@ async function registrarPedido(produtoId, quantidade, data) {
         return;
     }
 
-    if (dados.estoqueBaixo.length > 0) {
+    if (dados.estoqueBaixo && dados.estoqueBaixo.length > 0) {
         alert('Atenção: o estoque deste produto está abaixo do estoque mínimo!');
     }
 
